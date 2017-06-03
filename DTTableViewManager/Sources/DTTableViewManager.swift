@@ -721,14 +721,6 @@ extension DTTableViewManager: UITableViewDelegate
     }
 }
 
-// MARK: should not call this shit 
-extension DTTableViewManager: UIScrollViewDelegate
-{
-	public func scrollViewDidScroll(scrollView: UIScrollView) {
-		print("UIScrollViewDelegate - scrollViewDidScroll from DTTableViewManager")
-	}
-}
-
 // MARK: - StorageUpdating
 extension DTTableViewManager : StorageUpdating
 {
