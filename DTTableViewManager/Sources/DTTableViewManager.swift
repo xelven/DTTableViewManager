@@ -724,7 +724,7 @@ extension DTTableViewManager: UITableViewDelegate
 // MARK: should not call this shit 
 extension DTTableViewManager: UIScrollViewDelegate
 {
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	public func scrollViewDidScroll(scrollView: UIScrollView) {
 		print("UIScrollViewDelegate - scrollViewDidScroll from DTTableViewManager")
 	}
 }
