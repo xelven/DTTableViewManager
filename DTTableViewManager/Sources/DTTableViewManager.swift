@@ -164,7 +164,20 @@ public class DTTableViewManager : NSObject {
         }
         storage.delegate = self
     }
-    
+
+	public func cleanManagingWithDelegate()
+	{
+		if let delegate = self.delegate{
+			delegate.tableView.delegate = nil
+			delegate.tableView.dataSource = nil
+			if let mappingDelegate = delegate as? DTViewModelMappingCustomizable {
+				viewFactory.mappingCustomizableDelegate = nil
+			}
+			storage.delegate = nil
+			self.delegate = nil
+		}
+	}
+
     /// Call this method to retrieve model from specific UITableViewCell subclass.
     /// - Note: This method uses UITableView `indexPathForCell` method, that returns nil if cell is not visible. Therefore, if cell is not visible, this method will return nil as well.
     /// - SeeAlso: `StorageProtocol` method `objectForCell:atIndexPath:` - will return model even if cell is not visible
@@ -706,6 +719,14 @@ extension DTTableViewManager: UITableViewDelegate
             reaction.perform()
         }
     }
+}
+
+// MARK: should not call this shit 
+extension DTTableViewManager: UIScrollViewDelegate
+{
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		print("UIScrollViewDelegate - scrollViewDidScroll from DTTableViewManager")
+	}
 }
 
 // MARK: - StorageUpdating
